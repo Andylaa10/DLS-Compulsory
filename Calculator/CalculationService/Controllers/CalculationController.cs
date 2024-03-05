@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace ResultService.Controllers;
+namespace CalculationService.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]

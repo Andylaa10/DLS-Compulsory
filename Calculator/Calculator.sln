@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResultService", "ResultService\ResultService.csproj", "{37E7408C-6287-43CE-AF76-2D1DECC774A1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculationService", "CalculationService\CalculationService.csproj", "{37E7408C-6287-43CE-AF76-2D1DECC774A1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdditionService", "AdditionService\AdditionService.csproj", "{F12FFC50-1544-476A-A694-3019D812640A}"
 EndProject
