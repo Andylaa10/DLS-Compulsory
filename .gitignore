@@ -673,3 +673,6 @@ fabric.properties
 # Additional files built by Visual Studio
 
 # End of https://www.toptal.com/developers/gitignore/api/csharp,rider,visualstudio,visualstudiocode
+Calculator/.idea/.idea.Calculator/.idea/vcs.xml
+Calculator/.idea/.idea.Calculator/.idea/encodings.xml
+Calculator/.idea/.idea.Calculator/.idea/indexLayout.xml
