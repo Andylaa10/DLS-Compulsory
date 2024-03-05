@@ -1,5 +1,6 @@
 using AdditionService.Services;
 using Microsoft.AspNetCore.Mvc;
+using Monitoring;
 
 namespace AdditionService.Controllers;
 
