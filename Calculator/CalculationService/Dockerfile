@@ -6,17 +6,17 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["ResultService/ResultService.csproj", "ResultService/"]
-RUN dotnet restore "ResultService/ResultService.csproj"
+COPY ["CalculationService/CalculationService.csproj", "CalculationService/"]
+RUN dotnet restore "CalculationService/CalculationService.csproj"
 COPY . .
-WORKDIR "/src/ResultService"
-RUN dotnet build "ResultService.csproj" -c $BUILD_CONFIGURATION -o /app/build
+WORKDIR "/src/CalculationService"
+RUN dotnet build "CalculationService.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "ResultService.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "CalculationService.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "ResultService.dll"]
+ENTRYPOINT ["dotnet", "CalculationService.dll"]
