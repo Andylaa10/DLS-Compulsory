@@ -52,9 +52,9 @@
   },
   &quot;keyToStringList&quot;: {
     &quot;rider.external.source.directories&quot;: [
-      &quot;/Users/dkmarive/Library/Application Support/JetBrains/Rider2023.3/resharper-host/DecompilerCache&quot;,
-      &quot;/Users/dkmarive/Library/Application Support/JetBrains/Rider2023.3/resharper-host/SourcesCache&quot;,
-      &quot;/Users/dkmarive/.local/share/Symbols/src&quot;
+      &quot;C:\\Users\\andyl\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\DecompilerCache&quot;,
+      &quot;C:\\Users\\andyl\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\SourcesCache&quot;,
+      &quot;C:\\Users\\andyl\\AppData\\Local\\Symbols\\src&quot;
     ]
   }
 }</component>
@@ -340,6 +340,8 @@
       <option name="presentableId" value="Default" />
       <updated>1709627660586</updated>
       <workItem from="1709627661924" duration="1983000" />
+      <workItem from="1710187772859" duration="1117000" />
+      <workItem from="1710190383612" duration="477000" />
     </task>
     <servers />
   </component>
