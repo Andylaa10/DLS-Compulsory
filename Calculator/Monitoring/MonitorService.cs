@@ -9,9 +9,9 @@ namespace Monitoring;
 
 public class MonitorService
 {
-    public static readonly string ServiceName = Assembly.GetCallingAssembly().GetName().Name ?? "Unknown";
-    public static TracerProvider TracerProvider;
-    public static ActivitySource ActivitySource = new ActivitySource(ServiceName);
+    private static readonly string ServiceName = Assembly.GetCallingAssembly().GetName().Name ?? "Unknown";
+    public static readonly TracerProvider TracerProvider;
+    public static readonly ActivitySource ActivitySource = new ActivitySource(ServiceName);
 
     public static ILogger Log => Serilog.Log.Logger;
     
