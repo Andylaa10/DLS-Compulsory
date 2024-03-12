@@ -1,37 +1,32 @@
-﻿version: '3.7'
+version: '3.7'
 services:
   Addition:
     image: additionservice
     build:
       context: .
       dockerfile: AdditionService/Dockerfile
-    ports:
-      - "8081:80"
-      - "8082:443"
     networks:
       - local_network
     depends_on:
       - zipkin
+      - seq
   Subtract:
     image: subtractionservice
     build:
       context: .
       dockerfile: SubtractionService/Dockerfile
-    ports:
-      - "8083:80"
-      - "8084:443"
     networks:
       - local_network
     depends_on:
       - zipkin
+      - seq
   Calculator:
     image: calculator
     build:
       context: .
       dockerfile: CalculationService/Dockerfile
-    ports:
-      - "8085:80"
-      - "8086:443"
+    networks:
+      - local_network
     depends_on:
       - calculator-db
       - zipkin
