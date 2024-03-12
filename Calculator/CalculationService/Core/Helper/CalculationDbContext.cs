@@ -1,6 +1,8 @@
 using CalculationService.Core;
 using Microsoft.EntityFrameworkCore;
 using CalculationService.Core.Models;
+using CalculationService.Core.Models.Enums;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ResultService.Core.Helper;
 
@@ -12,8 +14,7 @@ public class CalculationDbContext : DbContext
     
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        //optionsBuilder.UseSqlServer("Server=calculator-db;Database=CalculationDB;User Id=sa;Password=SuperSecret7!;Trusted_Connection=False;TrustServerCertificate=True;");
-        optionsBuilder.UseInMemoryDatabase("CalculationDB");
+        optionsBuilder.UseSqlServer("Server=localhost,1433;Database=CalculatorDb;User Id=sa;Password=SuperSecret7!;Trusted_Connection=False;TrustServerCertificate=True;");        
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -23,8 +24,11 @@ public class CalculationDbContext : DbContext
         modelBuilder.Entity<Calculation>()
             .Property(p => p.Id)
             .ValueGeneratedOnAdd();
+
+        //modelBuilder.Entity<Calculation>().Property(c => c.Operation).HasConversion(o => o.ToString(),o => (Operation)Enum.Parse(typeof(Operation), o));
+
         #endregion
-        
+
     }
 
     public DbSet<Calculation> Calculations { get; set; }

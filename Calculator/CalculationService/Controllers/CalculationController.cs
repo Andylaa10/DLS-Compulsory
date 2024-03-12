@@ -59,9 +59,17 @@ public class CalculationController : ControllerBase
     }
 
     [HttpGet]
-    [Route("/rebuild-database")]
-    public async Task RebuildDatabase()
+    [Route("/rebuild")]
+    public async Task<IActionResult> RebuildDatabase()
     {
-        await _calculationService.RebuildDatabase();
+        try
+        {
+            await _calculationService.RebuildDatabase();
+            return StatusCode(200, "Database recreated");
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
     }
 }

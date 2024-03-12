@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations.Schema;
 using CalculationService.Core.Models.Enums;
 
 namespace CalculationService.Core.Models;

@@ -23,4 +23,10 @@
       <input [value]="result()" readonly matInput>
     </mat-form-field>
   </div>
+
+  @if(calculations().length > 0){
+    @for (calc of calculations(); track calc){
+
+    }
+  }
 </div>

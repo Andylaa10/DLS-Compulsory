@@ -8,13 +8,10 @@ namespace ResultService.Core.Repositories;
 public class CalculationRepository : ICalculationRepository
 {
     private readonly CalculationDbContext _context;
-    private DbContextOptions<CalculationDbContext> _options;
-
 
     public CalculationRepository(CalculationDbContext context)
     {
         _context = context;
-        _options = new DbContextOptionsBuilder<CalculationDbContext>().UseSqlServer("Server=localhost;Database=CalculationService;User Id=sa;Password=Password123;").Options;
     }
 
     public async Task<IEnumerable<Calculation>> GetAllCalculations()
@@ -35,11 +32,8 @@ public class CalculationRepository : ICalculationRepository
     }
     
     public async Task RebuildDatabase()
-    {
-        using (var context = new CalculationDbContext(_options))
-        {
-            context.Database.EnsureDeleted();
-            context.Database.EnsureCreated();
-        }
+    { 
+        await _context.Database.EnsureDeletedAsync(); 
+        await _context.Database.EnsureCreatedAsync();
     }
 }

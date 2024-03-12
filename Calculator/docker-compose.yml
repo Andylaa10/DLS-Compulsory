@@ -1,5 +1,17 @@
 version: '3.7'
 services:
+  calculator-db:
+    image: mcr.microsoft.com/azure-sql-edge:latest
+    environment:
+      MSSQL_SA_PASSWORD: "SuperSecret7!"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+    volumes:
+      - mssql_data_db:/var/opt/mssql/auth
+    networks:
+      - local_network
+      
   Addition:
     image: additionservice
     build:
@@ -13,7 +25,7 @@ services:
     depends_on:
       - zipkin
       - seq
-      
+
   Subtract:
     image: subtractionservice
     build:
@@ -27,7 +39,7 @@ services:
     depends_on:
       - zipkin
       - seq
-    
+
   Calculator:
     image: calculator
     build:
@@ -40,7 +52,7 @@ services:
       - local_network
     depends_on:
       - calculator-db
-      
+
   seq:
     image: datalust/seq:latest
     ports:
@@ -66,32 +78,20 @@ services:
       - zipkin-storage
     networks:
       - local_network
-      
+
   zipkin-storage:
-      image: openzipkin/zipkin-mysql
-      ports:
-        - "3306:3306"
-      volumes:
-        - zipkin_data:/mysql/data
-      networks:
-        - local_network
-  
-  calculator-db:
-    image: mcr.microsoft.com/azure-sql-edge:latest
-    environment:
-      MSSQL_SA_PASSWORD: "SuperSecret7!"
-      ACCEPT_EULA: "Y"
-    volumes:
-      - mssql_data_db:/var/opt/mssql
+    image: openzipkin/zipkin-mysql
     ports:
-      - "1434:1433"
+      - "3306:3306"
+    volumes:
+      - zipkin_data:/mysql/data
     networks:
       - local_network
-    
+
 volumes:
   seq_data:
   zipkin_data:
   mssql_data_db:
 networks:
   local_network:
-    driver: bridge  
+    driver: bridge

@@ -6,6 +6,7 @@ import {MatIcon} from "@angular/material/icon";
 import {MatButton} from "@angular/material/button";
 import {AdditionService} from "../../core/services/addition.service";
 import {SubtractionService} from "../../core/services/subtraction.service";
+import {Calculation} from "../../core/models/calculation.model";
 
 @Component({
   selector: 'app-home',
@@ -27,6 +28,7 @@ export class HomeComponent {
 
   result = signal(0);
 
+  calculations = signal<Calculation[]>([]);
   getFirstNumberForm(): number{
     return this.calcGroup.controls['firstNumber'].value;
   }
