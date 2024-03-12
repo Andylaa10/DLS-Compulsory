@@ -4,6 +4,7 @@ using OpenTelemetry;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 using Serilog;
+using Serilog.Enrichers.Span;
 
 namespace Monitoring;
 
@@ -29,7 +30,10 @@ public class MonitorService
         Serilog.Log.Logger = new LoggerConfiguration()
             .MinimumLevel.Verbose()
             .WriteTo.Console()
-            .WriteTo.Seq("http://localhost:5341")
+            .WriteTo.Seq("http://seq:5341")
+            .Enrich.WithSpan()
             .CreateLogger();
+
+        Serilog.Log.CloseAndFlush();
     }
 }

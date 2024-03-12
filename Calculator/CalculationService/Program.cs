@@ -29,6 +29,7 @@ builder.Services.AddDbContext<CalculationDbContext>(options =>
 builder.Services.AddScoped<ICalculationRepository, CalculationRepository>();
 builder.Services.AddScoped<ICalculationService, CalculationService.Core.Services.CalculationService>();
 
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

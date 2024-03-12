@@ -9,7 +9,7 @@ public class SubtractionService : ISubtractionService
     {
         using var activity = MonitorService.ActivitySource.StartActivity();
         
-        MonitorService.Log.Debug("Called Subtraction function");
+        MonitorService.Log.Information("Called Subtraction function");
 
         return await Task.Run(() => number1 - number2);
     }

@@ -1,3 +1,4 @@
+using Serilog;
 using SubtractionService.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +10,12 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<ISubtractionService, SubtractionService.Services.SubtractionService>();
+
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .WriteTo.Seq("http://localhost:5341")
+    .CreateLogger();
+
 
 var app = builder.Build();
 

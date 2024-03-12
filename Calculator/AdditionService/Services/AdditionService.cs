@@ -8,7 +8,9 @@ public class AdditionService : IAdditionService
     {
         using var activity = MonitorService.ActivitySource.StartActivity();
         
-        MonitorService.Log.Debug("Called Addition function");
+        MonitorService.Log.Information("Called Subtraction function");
+        
+        await Serilog.Log.CloseAndFlushAsync();
         
         return await Task.Run(() => number1 + number2);
     }
