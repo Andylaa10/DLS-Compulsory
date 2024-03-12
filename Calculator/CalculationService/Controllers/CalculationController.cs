@@ -57,4 +57,11 @@ public class CalculationController : ControllerBase
             return BadRequest(e.Message);
         }
     }
+
+    [HttpGet]
+    [Route("/rebuild-database")]
+    public async Task RebuildDatabase()
+    {
+        await _calculationService.RebuildDatabase();
+    }
 }

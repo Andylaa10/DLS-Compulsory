@@ -31,4 +31,9 @@ public class CalculationService : ICalculationService
     {
         await _calculationRepository.AddCalculation(_mapper.Map<Calculation>(addCalculationDto));
     }
+
+    public async Task RebuildDatabase()
+    {
+        await _calculationRepository.RebuildDatabase();
+    }
 }

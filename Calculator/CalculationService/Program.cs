@@ -36,7 +36,10 @@ builder.Services.AddSingleton(mapperConfig);
 
 builder.Services.AddDbContext<CalculationDbContext>(options =>
     options.UseSqlServer(
-        "calculator-db;Database=CalculationDB;User Id=sa;Password=Password123;Trusted_Connection=False;TrustServerCertificate=True;"));
+        "Server=calculator-db;Database=CalculationDB;User Id=sa;Password=Password123;Trusted_Connection=False;TrustServerCertificate=True;",
+        providerOptions => providerOptions.EnableRetryOnFailure())
+    );
+
 builder.Services.AddScoped<ICalculationRepository, CalculationRepository>();
 builder.Services.AddScoped<ICalculationService, CalculationService.Core.Services.CalculationService>();
 

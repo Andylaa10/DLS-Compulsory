@@ -8,4 +8,6 @@ public interface ICalculationService
     public Task<IEnumerable<Calculation>> GetAllCalculations();
     public Task<Calculation> GetCalculationById(int calculationId);
     public Task AddCalculation(AddCalculationDTO addCalculationDto);
+    
+    public Task RebuildDatabase();
 }

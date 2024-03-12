@@ -78,7 +78,7 @@ services:
         - local_network
   
   calculator-db:
-    image: mcr.microsoft.com/mssql/server:2022-latest
+    image: mcr.microsoft.com/azure-sql-edge:latest
     environment:
       MSSQL_SA_PASSWORD: "Password123"
       ACCEPT_EULA: "Y"
