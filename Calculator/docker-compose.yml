@@ -11,7 +11,7 @@ services:
     networks:
       - local_network
     depends_on:
-      - seq
+      - zipkin
   Subtract:
     image: subtractionservice
     build:
@@ -23,7 +23,7 @@ services:
     networks:
       - local_network
     depends_on:
-      - seq
+      - zipkin
   Calculator:
     image: calculator
     build:
@@ -34,7 +34,7 @@ services:
       - "8086:443"
     depends_on:
       - calculator-db
-      - seq
+      - zipkin
     networks:
       - local_network
   seq:
@@ -44,6 +44,8 @@ services:
       - "5342:80"
     volumes:
       - seq_data:/data
+    networks:
+      - local_network
     environment:
       ACCEPT_EULA: "Y"
 
@@ -61,13 +63,14 @@ services:
     networks:
       - local_network
   zipkin-storage:
-    image: openzipkin/zipkin-mysql
-    ports:
-      - "3306:3306"
-    volumes:
-      - zipkin_data:/mysql/data
-    networks:
-      - local_network
+      image: openzipkin/zipkin-mysql
+      ports:
+        - "3306:3306"
+      volumes:
+        - zipkin_data:/mysql/data
+      networks:
+        - local_network
+  
   calculator-db:
     image: mcr.microsoft.com/mssql/server:2022-latest
     environment:

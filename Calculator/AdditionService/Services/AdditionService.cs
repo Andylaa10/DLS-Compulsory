@@ -1,14 +1,22 @@
-﻿using Monitoring;
+﻿using System.Diagnostics;
+using Monitoring;
+using OpenTelemetry.Trace;
 
 namespace AdditionService.Services;
 
 public class AdditionService : IAdditionService
 {
+    private Tracer _tracer;
+    
+    public AdditionService(Tracer tracer)
+    {
+        _tracer = tracer;
+    }
     public async Task<double> Addition(double number1, double number2)
     {
-        using var activity = MonitorService.ActivitySource.StartActivity();
+        using var activity = _tracer.StartActiveSpan("Addition");
         
-        MonitorService.Log.Information("Called Subtraction function");
+        Logging.Log.Information("Called Addition function");
         
         return await Task.Run(() => number1 + number2);
     }
