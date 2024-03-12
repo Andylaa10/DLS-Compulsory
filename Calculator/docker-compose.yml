@@ -5,6 +5,9 @@ services:
     build:
       context: .
       dockerfile: AdditionService/Dockerfile
+    ports:
+      - "8081:80"
+      - "8082:443"
     networks:
       - local_network
     depends_on:
@@ -16,6 +19,9 @@ services:
     build:
       context: .
       dockerfile: SubtractionService/Dockerfile
+    ports:
+      - "8083:80"
+      - "8084:443"
     networks:
       - local_network
     depends_on:
@@ -27,6 +33,9 @@ services:
     build:
       context: .
       dockerfile: CalculationService/Dockerfile
+    ports:
+      - "8085:80"
+      - "8086:443"
     networks:
       - local_network
     depends_on:
