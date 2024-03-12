@@ -1,13 +1,18 @@
-const apiUrl = 'http://localhost:5148/api';
+const additionUrl = 'http://localhost:8081/api';
+const subtractionUrl = 'http://localhost:8083/api';
+const calculationUrl = 'http://localhost:8085/api';
 
 export const apiEndpoint = {
-  AdditionEndPoint:{
-
+  AdditionEndPoint: {
+    addition: `${additionUrl}/Addition`
   },
-  SubtractionEndPoint:{
-
+  SubtractionEndPoint: {
+    subtraction: `${subtractionUrl}/Subtraction`
   },
-  CalculationEndPoint:{
-
+  CalculationEndPoint: {
+    getCalculations: `${calculationUrl}/Calculation`,
+    getCalculationById: `${calculationUrl}/`,
+    addCalculation: `${calculationUrl}/Calculation`,
   }
 }
+

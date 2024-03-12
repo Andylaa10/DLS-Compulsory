@@ -6,12 +6,12 @@ namespace CalculationService.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class ResultController : ControllerBase
+public class CalculationController : ControllerBase
 {
-    private readonly ILogger<ResultController> _logger;
+    private readonly ILogger<CalculationController> _logger;
     private readonly ICalculationService _calculationService;
 
-    public ResultController(ILogger<ResultController> logger, ICalculationService calculationService)
+    public CalculationController(ILogger<CalculationController> logger, ICalculationService calculationService)
     {
         _logger = logger;
         _calculationService = calculationService;
