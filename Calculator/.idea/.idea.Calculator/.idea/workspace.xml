@@ -19,16 +19,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e10d7e4d-6470-47b2-9890-44cb86dc0709" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Calculator/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Calculator/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Calculator/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Calculator/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AdditionService/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AdditionService/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AdditionService/Services/AdditionService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AdditionService/Services/AdditionService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CalculationService/CalculationService.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/CalculationService/CalculationService.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CalculationService/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CalculationService/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Monitoring/MonitorService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Monitoring/MonitorService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Monitoring/Monitoring.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Monitoring/Monitoring.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SubtractionService/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SubtractionService/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SubtractionService/Services/SubtractionService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SubtractionService/Services/SubtractionService.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -354,7 +348,7 @@
       <workItem from="1709627661924" duration="1983000" />
       <workItem from="1710187772859" duration="1117000" />
       <workItem from="1710190383612" duration="477000" />
-      <workItem from="1710230941203" duration="3632000" />
+      <workItem from="1710230941203" duration="4318000" />
     </task>
     <servers />
   </component>

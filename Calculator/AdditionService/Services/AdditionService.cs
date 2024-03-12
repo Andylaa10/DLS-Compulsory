@@ -10,8 +10,6 @@ public class AdditionService : IAdditionService
         
         MonitorService.Log.Information("Called Subtraction function");
         
-        await Serilog.Log.CloseAndFlushAsync();
-        
         return await Task.Run(() => number1 + number2);
     }
 }

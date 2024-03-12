@@ -11,12 +11,6 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<ISubtractionService, SubtractionService.Services.SubtractionService>();
 
-Log.Logger = new LoggerConfiguration()
-    .WriteTo.Console()
-    .WriteTo.Seq("http://localhost:5341")
-    .CreateLogger();
-
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
