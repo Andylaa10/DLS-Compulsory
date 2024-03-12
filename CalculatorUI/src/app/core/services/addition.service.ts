@@ -8,9 +8,12 @@ import {apiEndpoint} from "../constrains/constraint";
 })
 export class AdditionService {
 
-  private _httpClient: HttpClient = inject(HttpClient);
+  private _http: HttpClient = inject(HttpClient);
+
+  constructor() {
+  }
   addition(num1: number, num2: number): Observable<number>{
-    return this._httpClient.get<number>(`${apiEndpoint.AdditionEndPoint.addition}/${num1}/${num2}`);
+    return this._http.get<number>(`${apiEndpoint.AdditionEndPoint.addition}/${num1}/${num2}`);
   }
 
 }

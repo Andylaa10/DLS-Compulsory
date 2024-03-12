@@ -1,0 +1,32 @@
+.content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.card{
+  width: 100%;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+button{
+  margin: 8px;
+}
+
+
+mat-form-field{
+  padding: 16px;
+}
+
+.call-to-action{
+  display: flex;
+  flex-direction: column;
+  width: 100px;
+}

@@ -2,7 +2,6 @@ using AutoMapper;
 using CalculationService.Core.Models;
 using CalculationService.Core.Services.DTOs;
 using CalculationService.Services;
-using Microsoft.EntityFrameworkCore;
 using Monitoring;
 using OpenTelemetry.Trace;
 using ResultService.Core.Helper;
@@ -41,6 +40,14 @@ builder.Services.AddScoped<ICalculationService, CalculationService.Core.Services
 
 
 var app = builder.Build();
+
+app.UseCors(options =>
+{
+    options.SetIsOriginAllowed(origin => true)
+        .AllowAnyHeader()
+        .AllowAnyMethod()
+        .AllowCredentials();
+});
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

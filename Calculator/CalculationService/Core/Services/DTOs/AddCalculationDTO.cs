@@ -6,5 +6,6 @@ public class AddCalculationDTO
 {
     public double FirstNumber { get; set; }
     public double SecondNumber { get; set; }
+    public double Result { get; set; }
     public Operation Operation { get; set; }
 }

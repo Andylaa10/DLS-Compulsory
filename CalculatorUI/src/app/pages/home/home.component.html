@@ -1,1 +1,26 @@
-<p>home works!</p>
+<div class="content">
+  <div class="card" [formGroup]="calcGroup">
+    <mat-form-field>
+      <mat-label>First number</mat-label>
+      <input formControlName="firstNumber" type="number" matInput>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Second number</mat-label>
+      <input formControlName="secondNumber" type="number" matInput>
+    </mat-form-field>
+
+    <div class="call-to-action">
+      <button mat-raised-button color="primary" (click)="addition()" [disabled]="calcGroup.controls['secondNumber'].errors || calcGroup.controls['firstNumber'].errors">
+        <mat-icon>add</mat-icon>
+      </button>
+      <button mat-raised-button color="primary" (click)="subtraction()" [disabled]="calcGroup.controls['secondNumber'].errors || calcGroup.controls['firstNumber'].errors">
+        <mat-icon>remove</mat-icon>
+      </button>
+    </div>
+
+    <mat-form-field>
+      <mat-label>Result</mat-label>
+      <input [value]="result()" readonly matInput>
+    </mat-form-field>
+  </div>
+</div>
