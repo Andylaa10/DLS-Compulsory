@@ -14,7 +14,7 @@ public class CalculationRepository : ICalculationRepository
     public CalculationRepository(CalculationDbContext context)
     {
         _context = context;
-        _options = new DbContextOptionsBuilder<CalculationDbContext>().UseSqlServer("Server=calculator-db;Database=CalculationDB;User Id=sa;Password=Password123;").Options;
+        _options = new DbContextOptionsBuilder<CalculationDbContext>().UseSqlServer("Server=localhost;Database=CalculationService;User Id=sa;Password=Password123;").Options;
     }
 
     public async Task<IEnumerable<Calculation>> GetAllCalculations()
@@ -38,8 +38,8 @@ public class CalculationRepository : ICalculationRepository
     {
         using (var context = new CalculationDbContext(_options))
         {
-            await context.Database.EnsureDeletedAsync();
-            await context.Database.EnsureCreatedAsync();
+            context.Database.EnsureDeleted();
+            context.Database.EnsureCreated();
         }
     }
 }
