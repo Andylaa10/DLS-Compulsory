@@ -11,6 +11,11 @@ import {AddCalculationDto} from "../dtos/addCalculation.dto";
 export class CalculationService {
   private _httpClient: HttpClient = inject(HttpClient);
 
+  constructor() {
+    this.getAllCalculations().subscribe(r => {
+      console.log(r);
+    })
+  }
   getAllCalculations(): Observable<Calculation[]> {
     return this._httpClient.get<Calculation[]>(`${apiEndpoint.CalculationEndPoint.getCalculations}`);
   }
@@ -20,6 +25,7 @@ export class CalculationService {
   }
 
   addCalculation(addCalculationDto: AddCalculationDto){
+    console.log('andy')
     return this._httpClient.post(`${apiEndpoint.CalculationEndPoint.addCalculation}/`, addCalculationDto);
   }
 }

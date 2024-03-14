@@ -1,4 +1,4 @@
-.content{
+.content {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -7,7 +7,7 @@
   width: 100%;
 }
 
-.card{
+.card {
   width: 100%;
   border-radius: 16px;
   display: flex;
@@ -16,17 +16,30 @@
   justify-content: center;
 }
 
-button{
+button {
   margin: 8px;
 }
 
+.calculation-results {
+  width: 80%;
+  display: flex;
+  margin-top: 20px;
+  flex-wrap: wrap;
+  align-items: center;
+}
 
-mat-form-field{
+mat-form-field {
   padding: 16px;
 }
 
-.call-to-action{
+.call-to-action {
   display: flex;
   flex-direction: column;
   width: 100px;
+}
+
+.header {
+  width: 80%;
+  display: flex;
+  margin-left: 10px;
 }

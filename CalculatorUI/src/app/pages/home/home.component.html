@@ -24,9 +24,16 @@
     </mat-form-field>
   </div>
 
-  @if(calculations().length > 0){
-    @for (calc of calculations(); track calc){
-
+  <div class="header">
+    <h1>
+      Calculations history
+    </h1>
+  </div>
+  <div class="calculation-results">
+    @if(calculations().length > 0){
+      @for (calc of calculations(); track calc){
+        <app-calculation-result-card [calculationResult]="calc"></app-calculation-result-card>
+      }
     }
-  }
+  </div>
 </div>
