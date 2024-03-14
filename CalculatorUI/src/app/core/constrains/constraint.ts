@@ -12,7 +12,7 @@ export const apiEndpoint = {
   CalculationEndPoint: {
     getCalculations: `${calculationUrl}/Calculation`,
     getCalculationById: `${calculationUrl}/`,
-    addCalculation: `${calculationUrl}/Calculation`,
+    addCalculation: `${calculationUrl}/Calculation/AddCalculation`,
   }
 }
 

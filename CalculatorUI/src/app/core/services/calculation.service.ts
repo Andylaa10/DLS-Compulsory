@@ -24,8 +24,7 @@ export class CalculationService {
     return this._httpClient.get<Calculation>(`${apiEndpoint.CalculationEndPoint.getCalculationById}/${calId}`);
   }
 
-  addCalculation(addCalculationDto: AddCalculationDto){
-    console.log('andy')
-    return this._httpClient.post(`${apiEndpoint.CalculationEndPoint.addCalculation}/`, addCalculationDto);
+  addCalculation(addCalculationDto: AddCalculationDto): Observable<Calculation>{
+    return this._httpClient.post<Calculation>(`${apiEndpoint.CalculationEndPoint.addCalculation}/`, addCalculationDto);
   }
 }

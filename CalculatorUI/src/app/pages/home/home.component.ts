@@ -1,4 +1,4 @@
-import {Component, inject, OnInit, signal} from '@angular/core';
+import {AfterViewInit, Component, inject, OnInit, signal} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
@@ -28,7 +28,6 @@ export class HomeComponent implements OnInit {
   private _subtractionService: SubtractionService = inject(SubtractionService);
   private _calculationService: CalculationService = inject(CalculationService);
 
-
   calcGroup: FormGroup = new FormGroup({
     firstNumber: new FormControl('', Validators.required),
     secondNumber: new FormControl('', Validators.required),
@@ -53,30 +52,26 @@ export class HomeComponent implements OnInit {
   addition() {
     const firstNumber = this.getFirstNumberForm();
     const secondNumber = this.getSecondNumberForm();
-    this._additionService.addition(firstNumber, secondNumber).subscribe(result => {
+    this._additionService.addition(firstNumber, secondNumber).subscribe( result => {
       this.result.set(result);
-      this.resetForm();
       const dto: AddCalculationDto = {
         firstNumber: firstNumber,
         secondNumber: secondNumber,
         result: result,
         Operation: Operations.Addition
       };
-      this._calculationService.addCalculation(dto).subscribe(() => {
-        console.log('Request sent')
-      });
+
+      this.addCalculation(dto);
+
+      this.resetForm();
     });
-    setTimeout(() => {
-      this.getCalculations();
-    }, 500)
   }
 
   subtraction() {
     const firstNumber = this.getFirstNumberForm();
     const secondNumber = this.getSecondNumberForm();
-    this._subtractionService.subtraction(firstNumber, secondNumber).subscribe(result => {
+    this._subtractionService.subtraction(firstNumber, secondNumber).subscribe( result => {
       this.result.set(result);
-      this.resetForm();
 
       const dto: AddCalculationDto = {
         firstNumber: firstNumber,
@@ -84,19 +79,24 @@ export class HomeComponent implements OnInit {
         result: result,
         Operation: Operations.Subtraction
       };
-      this._calculationService.addCalculation(dto).subscribe(() => {
-        console.log('Request sent')
-      });
+
+      this.addCalculation(dto);
+
+      this.resetForm();
     });
-    setTimeout(() => {
-      this.getCalculations();
-    }, 500)
   }
 
   resetForm() {
     this.calcGroup.reset();
   }
 
+  addCalculation(dto: AddCalculationDto){
+    this._calculationService.addCalculation(dto).subscribe(calculation =>{
+      if (calculation){
+        this.getCalculations();
+      }
+    });
+  }
   getCalculations() {
     this._calculationService.getAllCalculations().subscribe(calculations => {
       this.calculations.set(calculations.reverse());

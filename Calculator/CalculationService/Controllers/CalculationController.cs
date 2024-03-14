@@ -43,12 +43,12 @@ public class CalculationController : ControllerBase
     }
 
     [HttpPost]
+    [Route("AddCalculation")]
     public async Task<IActionResult> AddCalculation([FromBody] AddCalculationDTO dto)
     {
         try
         {
-            await _calculationService.AddCalculation(dto);
-            return StatusCode(201, "Calculation successfully added");
+            return Ok(await _calculationService.AddCalculation(dto));
         }
         catch (Exception e)
         {

@@ -36,15 +36,16 @@ public class CalculationRepository : ICalculationRepository
         return await _context.Calculations.FirstOrDefaultAsync(c => c.Id == calculationId);
     }
 
-    public async Task AddCalculation(Calculation calculation)
+    public async Task<Calculation> AddCalculation(Calculation calculation)
     {
         using var activity = _tracer.StartActiveSpan("AddCalculationToDB");
         
         Logging.Log.Information("AddCalculationToDB");
         
-        // await _context.Database.BeginTransactionAsync(); TODO FIND OUT HOW TO DO THIS
         await _context.Calculations.AddAsync(calculation);
         await _context.SaveChangesAsync();
+        
+        return calculation;
     }
     
     public async Task RebuildDatabase()
