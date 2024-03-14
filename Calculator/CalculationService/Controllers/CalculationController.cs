@@ -8,12 +8,10 @@ namespace CalculationService.Controllers;
 [Route("api/[controller]")]
 public class CalculationController : ControllerBase
 {
-    private readonly ILogger<CalculationController> _logger;
     private readonly ICalculationService _calculationService;
 
-    public CalculationController(ILogger<CalculationController> logger, ICalculationService calculationService)
+    public CalculationController(ICalculationService calculationService)
     {
-        _logger = logger;
         _calculationService = calculationService;
     }
 
