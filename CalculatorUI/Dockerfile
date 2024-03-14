@@ -1,12 +1,12 @@
-# Stage 1: Build Angular app
-FROM node:20 as build
+FROM node:20.1 as build
 WORKDIR /app
-COPY . .
+COPY /CalculatorUI/package.json ./package.json
 RUN npm install
-RUN npm run build -- --prod
-
-# Stage 2: Serve Angular app with Nginx
-FROM nginx:latest
-COPY --from=build /app/dist/CalculatorUI /usr/share/nginx/html
+RUN npm install -g @angular/cli
+COPY /CalculatorUI/ ./
+RUN ng build
+FROM nginx:alpine
+COPY --from=build /app/dist/calculator-ui/browser /usr/share/nginx/html
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
+

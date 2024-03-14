@@ -6,15 +6,16 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["SubtractionService/SubtractionService.csproj", "SubtractionService/"]
-RUN dotnet restore "SubtractionService/SubtractionService.csproj"
+COPY ["Calculator/SubtractionService/SubtractionService.csproj", "Calculator/SubtractionService/"]
+COPY ["Calculator/Monitoring/Monitoring.csproj", "Calculator/Monitoring/"]
+RUN dotnet restore "./Calculator/SubtractionService/SubtractionService.csproj"
 COPY . .
-WORKDIR "/src/SubtractionService"
-RUN dotnet build "SubtractionService.csproj" -c $BUILD_CONFIGURATION -o /app/build
+WORKDIR "/src/Calculator/SubtractionService"
+RUN dotnet build "./SubtractionService.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "SubtractionService.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./SubtractionService.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app

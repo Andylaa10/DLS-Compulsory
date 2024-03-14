@@ -11,12 +11,12 @@ services:
       - mssql_data_db:/var/opt/mssql
     networks:
       - local_network
-      
+  
   Addition:
     image: additionservice
     build:
       context: .
-      dockerfile: AdditionService/Dockerfile
+      dockerfile: ./Calculator/AdditionService/Dockerfile
     ports:
       - "8081:80"
       - "8082:443"
@@ -30,7 +30,7 @@ services:
     image: subtractionservice
     build:
       context: .
-      dockerfile: SubtractionService/Dockerfile
+      dockerfile: ./Calculator/SubtractionService/Dockerfile
     ports:
       - "8083:80"
       - "8084:443"
@@ -44,7 +44,7 @@ services:
     image: calculator
     build:
       context: .
-      dockerfile: CalculationService/Dockerfile
+      dockerfile: ./Calculator/CalculationService/Dockerfile
     ports:
       - "8085:80"
       - "8086:443"
@@ -88,6 +88,19 @@ services:
     networks:
       - local_network
 
+  frontend:
+    ports:
+      - "8080:80"
+    build:
+      context: .
+      dockerfile: ./CalculatorUI/Dockerfile
+    volumes:
+      - ./CalculatorUI/src:/app/src:delegated
+    networks:
+      - local_network
+    depends_on:
+      - Calculator
+
 volumes:
   seq_data:
   zipkin_data:
@@ -95,3 +108,4 @@ volumes:
 networks:
   local_network:
     driver: bridge
+
