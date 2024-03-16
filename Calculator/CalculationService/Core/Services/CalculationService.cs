@@ -27,9 +27,9 @@ public class CalculationService : ICalculationService
         return await _calculationRepository.GetCalculationById(calculationId);
     }
 
-    public async Task<Calculation> AddCalculation(AddCalculationDTO addCalculationDto)
-    {
-        return await _calculationRepository.AddCalculation(_mapper.Map<Calculation>(addCalculationDto));
+    public async Task AddCalculation(AddCalculationDTO addCalculationDto)
+    { 
+        await _calculationRepository.AddCalculation(_mapper.Map<Calculation>(addCalculationDto));
     }
 
     public async Task RebuildDatabase()

@@ -48,7 +48,8 @@ public class CalculationController : ControllerBase
     {
         try
         {
-            return Ok(await _calculationService.AddCalculation(dto));
+            await _calculationService.AddCalculation(dto);
+            return StatusCode(201, "Successfully added to db");
         }
         catch (Exception e)
         {

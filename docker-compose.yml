@@ -12,7 +12,7 @@ services:
     networks:
       - local_network
   
-  Addition:
+  addition:
     image: additionservice
     build:
       context: .
@@ -26,7 +26,7 @@ services:
       - zipkin
       - seq
 
-  Subtract:
+  subtract:
     image: subtractionservice
     build:
       context: .
@@ -40,8 +40,8 @@ services:
       - zipkin
       - seq
 
-  Calculator:
-    image: calculator
+  calculator:
+    image: calculatorservice
     build:
       context: .
       dockerfile: ./Calculator/CalculationService/Dockerfile
@@ -99,7 +99,7 @@ services:
     networks:
       - local_network
     depends_on:
-      - Calculator
+      - calculator
 
 volumes:
   seq_data:

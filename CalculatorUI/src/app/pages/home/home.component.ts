@@ -13,6 +13,7 @@ import {
 import {CalculationService} from "../../core/services/calculation.service";
 import {AddCalculationDto} from "../../core/dtos/addCalculation.dto";
 import {Operations} from "../../core/enums/operations";
+import {catchError, of, retry} from "rxjs";
 
 @Component({
   selector: 'app-home',
@@ -52,16 +53,10 @@ export class HomeComponent implements OnInit {
   addition() {
     const firstNumber = this.getFirstNumberForm();
     const secondNumber = this.getSecondNumberForm();
-    this._additionService.addition(firstNumber, secondNumber).subscribe( result => {
+    this._additionService.addition(firstNumber, secondNumber).subscribe( async result => {
       this.result.set(result);
-      const dto: AddCalculationDto = {
-        firstNumber: firstNumber,
-        secondNumber: secondNumber,
-        result: result,
-        Operation: Operations.Addition
-      };
 
-      this.addCalculation(dto);
+      await this.getCalculations();
 
       this.resetForm();
     });
@@ -70,18 +65,10 @@ export class HomeComponent implements OnInit {
   subtraction() {
     const firstNumber = this.getFirstNumberForm();
     const secondNumber = this.getSecondNumberForm();
-    this._subtractionService.subtraction(firstNumber, secondNumber).subscribe( result => {
+    this._subtractionService.subtraction(firstNumber, secondNumber).subscribe( async result => {
       this.result.set(result);
 
-      const dto: AddCalculationDto = {
-        firstNumber: firstNumber,
-        secondNumber: secondNumber,
-        result: result,
-        Operation: Operations.Subtraction
-      };
-
-      this.addCalculation(dto);
-
+      await this.getCalculations();
       this.resetForm();
     });
   }
@@ -90,15 +77,9 @@ export class HomeComponent implements OnInit {
     this.calcGroup.reset();
   }
 
-  addCalculation(dto: AddCalculationDto){
-    this._calculationService.addCalculation(dto).subscribe(calculation =>{
-      if (calculation){
-        this.getCalculations();
-      }
-    });
-  }
-  getCalculations() {
-    this._calculationService.getAllCalculations().subscribe(calculations => {
+
+  async getCalculations() {
+    this._calculationService.getAllCalculations().pipe(retry(3)).subscribe(calculations => {
       this.calculations.set(calculations.reverse());
     });
   }
