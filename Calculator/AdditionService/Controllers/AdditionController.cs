@@ -2,7 +2,7 @@ using System.Text;
 using System.Text.Json;
 using AdditionService.Services;
 using Microsoft.AspNetCore.Mvc;
-using Monitoring;
+using Polly;
 
 namespace AdditionService.Controllers;
 
@@ -27,6 +27,11 @@ public class AdditionController : ControllerBase
         try
         {
             var result = await _additionService.Addition(firstNumber, secondNumber);
+            
+            var polly = Policy.Handle<HttpRequestException>().Retry(3, (ex, retryCount) =>
+            {
+                Console.WriteLine($"Retrying due to {ex.GetType().Name}... Attempt {retryCount}");
+            });
 
             //This means addition
             var operation = 0;
@@ -41,7 +46,12 @@ public class AdditionController : ControllerBase
             var payload = JsonSerializer.Serialize(dto);
             var content = new StringContent(payload, Encoding.UTF8, "application/json");
 
-            _httpClient.PostAsync("http://Calculator/api/Calculation/AddCalculation", content);
+            polly.Execute(() =>
+            {
+                _httpClient.PostAsync("http://Calculator/api/Calculation/AddCalculation", content);
+            });
+
+            await Task.Delay(200);
 
             return Ok(result);
         }

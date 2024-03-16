@@ -1,6 +1,7 @@
 using System.Text;
 using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
+using Polly;
 using SubtractionService.Services.Interfaces;
 
 namespace SubtractionService.Controllers;
@@ -29,6 +30,11 @@ public class SubtractionController : ControllerBase
         {
             var result = await _subtractionService.Subtraction(firstNumber, secondNumber);
             
+            var polly = Policy.Handle<HttpRequestException>().Retry(3, (ex, retryCount) =>
+            {
+                Console.WriteLine($"Retrying due to {ex.GetType().Name}... Attempt {retryCount}");
+            });
+            
             //This means subtraction
             var operation = 1;
             var dto = new
@@ -42,7 +48,13 @@ public class SubtractionController : ControllerBase
             var payload = JsonSerializer.Serialize(dto);
             var content = new StringContent(payload, Encoding.UTF8, "application/json");
 
-            _httpClient.PostAsync("http://Calculator/api/Calculation/AddCalculation", content);
+            polly.Execute(() =>
+            {
+                _httpClient.PostAsync("http://Calculator/api/Calculation/AddCalculation", content);
+            });            
+            
+            await Task.Delay(200);
+
             
             return Ok(result);
         }

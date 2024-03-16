@@ -36,7 +36,7 @@ public class CalculationRepository : ICalculationRepository
         return await _context.Calculations.FirstOrDefaultAsync(c => c.Id == calculationId);
     }
 
-    public async Task<Calculation> AddCalculation(Calculation calculation)
+    public async Task AddCalculation(Calculation calculation)
     {
         using var activity = _tracer.StartActiveSpan("AddCalculationToDB");
         
@@ -44,8 +44,6 @@ public class CalculationRepository : ICalculationRepository
         
         await _context.Calculations.AddAsync(calculation);
         await _context.SaveChangesAsync();
-        
-        return calculation;
     }
     
     public async Task RebuildDatabase()
